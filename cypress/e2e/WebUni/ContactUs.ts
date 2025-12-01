@@ -56,3 +56,20 @@ When("I enter a valid email address {string}", (email:string) => {
 When("I enter a comment {string}", (comment:string) => {
   cy.get('textarea[name="message"]').type(comment);
 });
+
+
+When("I type a valid first name {word} and a last name {string}", (first_name:string, last_name:string) => {
+  cy.get('input[name="first_name"]').type(first_name);
+  cy.get('input[name="last_name"]').type(last_name);
+
+});
+
+When("I type a {string} and a comment {string}", (email:string, comment:string) => {
+  
+  cy.get('[name="email"]').type(email);
+  cy.get('textarea[name="message"]').type(comment);
+});
+
+Then("I should be presented with a successful text {string}", (message:string) => {
+  cy.xpath("//h1 | //body").should("contain.text",message);
+});
